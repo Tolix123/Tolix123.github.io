@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>音乐播放器</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    
+    /* 播放器样式 */
+    body {
+  background-image: url('images/image1.jpg') ;
+  margin:0px;
+
+background-size:100% 100%;
+background-attachment:fixed;
+}
+    #player {
+      width: 400px;
+      height: 150px;
+      background-color: #eeeeee;
+      border-radius: 8px;
+      padding: 10px;
+      position: absolute;
+      font-family: 'SourceHanSansSC-Light';
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 8px 30px 0 rgba(0,0,0,0.19);
+      opacity:0.5;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      backdrop-filter: 10px;
+    }
+    
+
+
+    #player h2 {
+      margin-top: 0;
+    }
+    #player audio {
+      width: 100%;
+    }
+    #player input[type="range"] {
+      width: 100%;
+    }
+    #player p {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    #play-pause-button,#next-button,#prev-button {
+      background-color: rgb(245, 245, 245);
+      color: #1d1d1d;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 2px;
+      border: 2px solid #b4b4b4;
+      -webkit-transition-duration: 0.2s;
+      transition-duration: 0.4s;
+	  margin-bottom:10px
+    }
+    #play-pause-button:hover,#prev-button:hover,#next-button:hover {
+      background-color: rgb(243, 243, 243);
+      color: #284b79;
+      box-shadow: 0 4px 6px 0 rgba(0,0,0,0.24), 0 4px 20px 0 rgba(0,0,0,0.19);
+    }
+    input[type=range] {
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    }
+    input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 5px #ddd;
+  background: #c9c9c9;
+  border-radius: 25px;
+  }
+  input[type=range]::-webkit-slider-thumb {
+  box-shadow: inset 0px 0px 5px #ddd;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #d3d3d3;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8.5px;
+  }
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+
+@font-face {
+  font-family: 'SourceHanSansSC-Light';
+  src: url('Fonts/SourceHanSansSC-Light.otf') format('opentype');
+}
+
+
+</style>
+</head>
+<body>
+  <div id="player">
+    <h2>音乐播放器</h2>
+    <audio id="audio" src=""></audio>
+    <input type="range" id="seek-bar" value="0">
+    <br>
+    <button id="play-pause-button" ;>播放</button>
+    <button id="prev-button">上一曲</button>
+    <button id="next-button">下一曲</button>
+    <p id="song-info"></p>
+  </div>
+
+  <script>
+    // 获取元素
+    var audio = document.getElementById("audio");
+    var playPauseButton = document.getElementById("play-pause-button");
+    var prevButton = document.getElementById("prev-button");
+    var nextButton = document.getElementById("next-button");
+    var seekBar = document.getElementById("seek-bar");
+    var songInfo = document.getElementById("song-info");
+    
+    // 设置初始值
+    var songs = [
+      { name: "歌曲1", author: "作者1", src: "http://music.163.com/song/media/outer/url?id=489500309.mp3" },
+      { name: "歌曲2", author: "作者2", src: "https://music.163.com/song/media/outer/url?id=507585217.mp3" },
+      { name: "歌曲3", author: "作者3", src: "http://music.163.com/song/media/outer/url?id=1490260397.mp3" }
+    ];
+    var currentSongIndex = 0;
+    audio.src = songs[currentSongIndex].src;
+    audio.volume = 0.5;
+    
+    // 播放/暂停按钮
+    playPauseButton.addEventListener("click", function() {
+      if (audio.paused) {
+        audio.play();
+        playPauseButton.innerHTML = "暂停";
+      } else {
+        audio.pause();
+        playPauseButton.innerHTML = "播放";
+      }
+    });
+
+    // 上一曲按钮
+    prevButton.addEventListener("click", function() {
+      currentSongIndex--;
+      if (currentSongIndex < 0) {
+        currentSongIndex = songs.length - 1;
+      }
+      audio.src = songs[currentSongIndex].src;
+      audio.play();
+      playPauseButton.innerHTML = "暂停";
+      songInfo.innerHTML = songs[currentSongIndex].name + " - " + songs[currentSongIndex].author;
+    });
+
+    // 下一曲按钮
+    nextButton.addEventListener("click", function() {
+      currentSongIndex++;
+      if (currentSongIndex >= songs.length) {
+        currentSongIndex = 0;
+      }
+      audio.src = songs[currentSongIndex].src;
+      audio.play();
+      playPauseButton.innerHTML = "暂停";
+      songInfo.innerHTML = songs[currentSongIndex].name + " - " + songs[currentSongIndex].author;
+    });
+
+    // 进度条
+    seekBar.addEventListener("change", function() {
+      var time = audio.duration * (seekBar.value / 100);
+      audio.currentTime = time;
+    });
+
+    audio.addEventListener("timeupdate", function() {
+      var value = (100 / audio.duration) * audio.currentTime;
+      seekBar.value = value;
+    });
+    
+    // 显示第一首歌曲的信息
+    songInfo.innerHTML = songs[currentSongIndex].name + " - " + songs[currentSongIndex].author;
+  </script>
+</body>
+</html>
