@@ -8,15 +8,15 @@
     
     /* 播放器样式 */
     body {
-  background-image: url('image/image1.jpg') ;
+
   margin:0px;
 
 background-size:100% 100%;
 background-attachment:fixed;
 }
     #player {
-      width: 400px;
-      height: 150px;
+      width: 440px;
+      height: 190px;
       background-color: #eeeeee;
       border-radius: 8px;
       padding: 10px;
@@ -24,7 +24,7 @@ background-attachment:fixed;
       font-family: 'SourceHanSansSC-Light';
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 8px 30px 0 rgba(0,0,0,0.19);
-      opacity:0.5;
+      opacity:1;
       top: 0;
       left: 0;
       right: 0;
@@ -35,7 +35,7 @@ background-attachment:fixed;
     
 
 
-    #player h2 {
+    #player h1 {
       margin-top: 0;
     }
     #player audio {
@@ -45,7 +45,7 @@ background-attachment:fixed;
       width: 100%;
     }
     #player p {
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 14px;
     }
     #play-pause-button,#next-button,#prev-button {
@@ -87,7 +87,7 @@ background-attachment:fixed;
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: #d3d3d3;
+  background: #afafaf;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -8.5px;
@@ -106,7 +106,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 </head>
 <body>
   <div id="player">
-    <h2>音乐播放器</h2>
+    <h1>音乐播放器</h1>
     <audio id="audio" src=""></audio>
     <input type="range" id="seek-bar" value="0">
     <br>
@@ -127,9 +127,9 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     
     // 设置初始值
     var songs = [
-      { name: "歌曲1", author: "作者1", src: "http://music.163.com/song/media/outer/url?id=489500309.mp3" },
-      { name: "歌曲2", author: "作者2", src: "https://music.163.com/song/media/outer/url?id=507585217.mp3" },
-      { name: "歌曲3", author: "作者3", src: "http://music.163.com/song/media/outer/url?id=1490260397.mp3" }
+      { name: "Radish Style", author: "URCHN、bugzug", src: "http://music.163.com/song/media/outer/url?id=2001509082.mp3" },
+      { name: "The Process", author: "Lakey Inspired", src: "http://music.163.com/song/media/outer/url?id=521416704.mp3" },
+      { name: "Chill Day", author: "Lakey Inspired", src: "http://music.163.com/song/media/outer/url?id=521417806.mp3" }
     ];
     var currentSongIndex = 0;
     audio.src = songs[currentSongIndex].src;
