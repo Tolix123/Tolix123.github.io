@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('image1.png') no-repeat center center fixed;
+            background: url('http://p0.qhimg.com/t01c27bafd6d2f971b4.jpg') no-repeat center center fixed;
             background-size: cover;
             flex-direction: column;
             position: relative;
@@ -29,16 +29,31 @@
         }
 
         .container {
-            width: 750px;
-            height: 450px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            display: flex;
-            font-size: 24px;
-            color: #333;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            margin-top: 20px;
+        width: 750px;
+        height: 450px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        display: flex;
+        font-size: 24px;
+        color: #333;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        margin-top: 20px;
+        position: relative; /* 设置容器为相对定位 */
+        opacity: 0; /* 初始状态为透明 */
+        transform: translateX(-100%); /* 初始状态为左侧滑出 */
+        animation: slideInFromLeft 1s ease-in-out forwards; /* 应用从左侧滑入动画 */
+        }
+
+        @keyframes slideInFromLeft {
+        from {
+            opacity: 0; /* 初始状态为透明 */
+            transform: translateX(-100%); /* 左侧滑出 */
+        }
+        to {
+            opacity: 1; /* 终止状态为完全不透明 */
+            transform: translateX(0); /* 恢复原始位置 */
+            }
         }
 
         .container .left-section {
@@ -48,7 +63,7 @@
             justify-content: center;
             border-radius: 20px 0 0 20px;
             overflow: hidden;
-            background-color: rgba(231,150,180, 0.4);
+            background-color: rgba(231,150,180, 0.2);
         }
 
         .container .left-section img {
@@ -68,32 +83,46 @@
             font-size: 46px;
             margin-bottom: 10px;
             margin-top: 20px;
+            opacity: 0; /* 初始状态为透明 */
+            transform: translateX(-100%); /* 初始状态为左侧滑出 */
+            animation: slideInFromLeft 1s ease-in-out forwards; /* 应用从左侧滑入动画 */
+            animation-delay: 0.5s;
         }
 
         .container .p1 {
             margin-bottom: 5px;
             margin-top: 0;
             font-size: 22px;
+            opacity: 0; /* 初始状态为透明 */
+            transform: translateX(-100%); /* 初始状态为左侧滑出 */
+            animation: slideInFromLeft 1s ease-in-out forwards; /* 应用从左侧滑入动画 */
+            animation-delay: 0.5s;
         }
 
         .container .p2 {
             margin-bottom: 5px;
             margin-top: 0;
             font-size: 18px;
+            opacity: 0; /* 初始状态为透明 */
+            transform: translateX(-100%); /* 初始状态为左侧滑出 */
+            animation: slideInFromLeft 1s ease-in-out forwards; /* 应用从左侧滑入动画 */
+            animation-delay: 0.5s;
         }
 
         .container .buttons {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-            
-        }
+    position: absolute; /* 设置按钮为绝对定位 */
+    bottom: 5%; /* 距离容器底部的距离 */
+    left: 38%; /* 距离容器左侧的距离 */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    justify-content: center;
+}
 
         .container .buttons button {
-            width: 100%;
-            height: 40px;
+            width: 140px;
+            height: 45px;
             background-color: rgba(231,150,180, 0.8);
             color: #fff;
             border: none;
@@ -135,7 +164,10 @@
         .a {
             display: inline-block;
         }
-
+        ::selection {
+  background-color: #DF9FB7; /* 设置背景色 */
+  color: #eeeeee; /* 设置文本颜色 */
+}
     </style>
 </head>
 <body>
@@ -144,7 +176,7 @@
         <!-- <img src="image2.png" alt="Image"> -->
         </div>
         <div class="right-section">
-            <h1>Hi there :)</h1>
+            <h1>Hi there</h1>
             <p class="p1">The unconscious is the discourse of the Other.</p>
             <p class="p2"></p>
             <p class="empty-line"></p>
