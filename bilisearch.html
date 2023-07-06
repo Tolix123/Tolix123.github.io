@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>BiliSearch</title>
 	<style type="text/css">
 		.search-box {
-			margin-top: 20%;
+			margin-top: 10%;
 			margin-left: auto;
 			margin-right: auto;
-			width: 50%;
+			width: 30%;
 			height: 50px;
-			border-radius: 20px;
-			box-shadow: 0px 0px 15px #888888;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			border-radius: 10px;
+
 		}
-		.center {
-  			text-align: center;
-			font-family: SimHei;
-			margin-top: 30px;
-			font-size: 20px;
-		}
+
+
+
 		input[type="text"] {
-			width: calc(100% );
-			height: calc(100% );
+			width: calc(100%);
+			height: calc(100%);
 			border-radius: 20px;
 			padding-left: 10px;
-			font-size: 20px;
-			outline:none;
+			font-size: 24px;
+			outline: none;
+			font-family: Dengxian;
 		}
 	</style>
 </head>
+
 <body onload="document.getElementById('search').focus()">
-	
+
 	<div class="search-box">
-		<input type="text" id="search" placeholder="Search" onkeydown="if(event.keyCode==13) location.href='https://search.bilibili.com/all?keyword='+this.value;">
+		<input type="text" id="search" placeholder="Remember what you're going to do"
+			onkeydown="if(event.keyCode==13) location.href='https://search.bilibili.com/all?keyword='+this.value;">
 	</div>
 </body>
+
 </html>
