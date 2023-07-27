@@ -2,38 +2,112 @@
 <html>
 
 <head>
-	<title>BiliSearch</title>
-	<style type="text/css">
-		.search-box {
-			margin-top: 10%;
-			margin-left: auto;
-			margin-right: auto;
-			width: 30%;
-			height: 50px;
-			border-radius: 10px;
+    <title>BiliSearch</title>
+    <style type="text/css">
+        body {
+            background-color: #EDEDED;
+        }
 
-		}
+        .search-box {
+            margin-top: 5%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 30%;
+            height: 50px;
+            border-radius: 10px;
+        }
 
+        input[id="search"] {
+            width: calc(100%);
+            height: calc(100%);
+            border-radius: 20px;
+            padding-left: 10px;
+            font-size: 24px;
+            outline: none;
+            font-family: Dengxian;
+        }
 
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 18px;
+            font-family: Dengxian;
+        }
 
-		input[type="text"] {
-			width: calc(100%);
-			height: calc(100%);
-			border-radius: 20px;
-			padding-left: 10px;
-			font-size: 24px;
-			outline: none;
-			font-family: Dengxian;
-		}
-	</style>
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #666666;
+            font-family: Consolas;
+            border: none;
+            color: #EDEDED;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #777777;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 5%;
+            font-family: Dengxian;
+            font-size: 50px
+        }
+    </style>
 </head>
 
 <body onload="document.getElementById('search').focus()">
+    <h1>BiliSearch</h1>
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Remember what ur gonna do"
+            onkeydown="if(event.keyCode==13) location.href='https://search.bilibili.com/all?keyword='+this.value;">
+    </div>
+    <div class="button-group">
+        <button class="button" onclick="goToFavList()">Favlist</button>
+        <script>
+            function goToFavList() {
+                var input = document.getElementById("input").value;
+                var url = "https://space.bilibili.com/" + input + "/favlist";
+                window.location.href = url;
+            }
+        </script>
+        <a href="https://www.bilibili.com/watchlater/" class="button">Watchlater</a>
+        <a href="https://www.bilibili.com/" class="button">Bilibili</a>
+    </div>
 
-	<div class="search-box">
-		<input type="text" id="search" placeholder="Remember what you're going to do"
-			onkeydown="if(event.keyCode==13) location.href='https://search.bilibili.com/all?keyword='+this.value;">
-	</div>
+    <footer>
+        <label for="input">uid:</label>
+        <input type="text" id="input">
+        <button onclick="saveInput()">Save</button>
+        <script>
+            function saveInput() {
+                var input = document.getElementById("input").value;
+                localStorage.setItem("savedInput", input);
+            }
+            var savedInput = localStorage.getItem("savedInput");
+            if (savedInput) {
+                document.getElementById("input").value = savedInput;
+            }
+        </script>
+    </footer>
+
 </body>
 
 </html>
